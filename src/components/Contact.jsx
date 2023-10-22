@@ -131,7 +131,8 @@ const Contact = () => {
           >
             {loading ? "Sending..." : "Send"}
           </button>
-          <button
+            <button
+              id="resume"
             type='submit'
             className="ml-auto bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
             onClick={handleDownload}

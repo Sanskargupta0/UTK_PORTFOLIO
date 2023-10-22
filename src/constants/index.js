@@ -4,7 +4,7 @@ import {
     creator,
     web,
     javascript,
-    typescript,
+    rabbitMq,
     html,
     css,
     reactjs,
@@ -12,7 +12,7 @@ import {
     nodejs,
     mongodb,
     git,
-    figma,
+    java,
     docker,
     golang,
     c,
@@ -23,7 +23,11 @@ import {
     bill,
   } from "../assets";
   
-  export const navLinks = [
+export const navLinks = [
+  {
+      id: "resume",
+      title: "Resume",
+    },
     {
       id: "about",
       title: "About",
@@ -32,10 +36,12 @@ import {
       id: "work",
       title: "Work",
     },
+    
     {
       id: "contact",
       title: "Contact",
     },
+    
   ];
   
   const services = [
@@ -71,8 +77,8 @@ import {
       icon: javascript,
     },
     {
-      name: "TypeScript",
-      icon: typescript,
+      name: "RabbitMQ",
+      icon: rabbitMq,
     },
     {
       name: "React JS",
@@ -95,8 +101,8 @@ import {
       icon: git,
     },
     {
-      name: "figma",
-      icon: figma,
+      name: "java",
+      icon: java,
     },
     {
       name: "docker",
@@ -112,32 +118,33 @@ import {
     },
   ];
   
-  const experiences = [
+const experiences = [
+  {
+      title: "Software Engineer Intern",
+      company_name: "RabbitLoader",
+      icon: loder,
+      iconBg: "#287FFD",
+      date: "Aug 2022 – present",
+      points: [
+        "Developed Microservices for RabbitLoader using Golang as per market standards to provide 100-page speed., improving system efficiency using RabbitMQ for asynchronous communication",
+        "Created User-MS with Firebase integration for authentication with email and referral functionality.",
+        "Built and managed various microservices, including a high-traffic Cloudflare service with an average of 60k user interactions daily.",
+        "Conducted unit testing and worked on APIs for enhanced functionality, covering 90% of code.",
+      ],
+    },
     {
       title: "Full Stack Developer Intern ",
       company_name: "Wizwack",
       icon: wizwack,
-      iconBg: "#383E56",
+      iconBg: "#FFFEFE",
       date: "May 2022 – Aug 2022 ",
       points: [
-        "Developing and maintaining web applications using React.js and other related technologies.",
-        "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
+        "Worked on different services based on Firebase(Pub/Sub) for game backend using cloud services(GCP) dealing with hundreds of users at a time.",
+        "Managed Services like Payment Service, Multiplayer Service, and User Service.",
+        "Done Automated bulk testing of APIs using Postman of about 1000 API's.",
       ],
     },
-    {
-      title: "Software Engineer Intern",
-      company_name: "RabbitLoader",
-      icon: loder,
-      iconBg: "#383E56",
-      date: "Aug 2022 – present",
-      points: [
-        "Developed Microservices using Golang, improving system efficiency.",
-        "Created User-MS with Firebase integration for authentication with email and referral functionality.",
-        "Built and managed various microservices, including a high-traffic Cloudflare service with an average of 60k user interactions daily.",
-        "Conducted unit testing and worked on APIsfor enhanced functionality, covering 90% of code.",
-      ],
-    },
+    
   ];
   
   const testimonials = [
