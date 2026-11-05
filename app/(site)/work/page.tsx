@@ -6,18 +6,14 @@ import { Button } from "@/components/ui/button";
 import { TrophyIcon } from "@/components/icons";
 import BackHome from "@/components/ui/back-home";
 import Enter from "@/components/ui/enter";
-import {
-  ExtractionPipeline,
-  IncidentTrace,
-  MonolithSplit,
-} from "@/components/ui/diagram";
-import { GalaxyFlow } from "@/components/ui/diagram/galaxy-flow";
 import FlowChart from "@/components/ui/flow-chart";
 import GitHubGraph from "@/components/ui/github-graph";
 import HashScroll from "@/components/ui/hash-scroll";
 import ImageModal from "@/components/ui/image-modal";
 import LinesBG from "@/components/ui/lines-bg";
 import RoleHeading from "@/components/ui/role-heading";
+import { GitHubEvidence, PiovationContributions } from "@/components/ui/github-evidence";
+import { GpuAllocationFlow, WorkerOrchestrationFlow, ContainerDeploymentFlow, EventPipelineFlow } from "@/components/ui/diagram/infrastructure";
 import TechStack from "@/components/ui/tech-stack";
 import { slugify, tocFromMdx } from "@/lib/utils";
 import { DocsTableOfContents, DocsTocPill } from "@/components/ui/toc";
@@ -129,13 +125,16 @@ const components = {
       {children}
     </div>
   ),
-  ExtractionPipeline,
   FlowChart,
-  GalaxyFlow,
   GitHubGraph,
-  IncidentTrace,
+  GitHubEvidence,
+  PiovationContributions,
+  GpuAllocationFlow,
+  WorkerOrchestrationFlow,
+  ContainerDeploymentFlow,
+  EventPipelineFlow,
+  ArchitectureNote: () => <p className="not-prose text-xs leading-relaxed text-muted-foreground/60">The walkthroughs are simplified logical views based on the supplied work history and infrastructure context. Recovery and capacity scenarios illustrate behavior; they are not production incident reports.</p>,
   LinesBG,
-  MonolithSplit,
   RoleHeading,
   TechStack,
 };

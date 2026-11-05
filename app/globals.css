@@ -332,8 +332,8 @@ img {
   }
 }
 
-/* GalaxyFlow's scenario timeline */
-@keyframes galaxy-fill {
+/* Architecture walkthrough scenario timeline */
+@keyframes diagram-progress {
   from {
     width: 0%;
   }

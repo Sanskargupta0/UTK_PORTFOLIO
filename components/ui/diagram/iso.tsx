@@ -107,7 +107,7 @@ export const mark = (tint: Tint) =>
 
 /* ---------- a story: nodes, edges and the scenes that light them ---------- */
 
-export type ObjProps = { p: Proj; tint: Tint; step: number };
+export type ObjProps = { p: Proj; tint: Tint; step: number; still?: boolean };
 export type EdgeState = "idle" | "ok" | "bad" | "taint" | "replay";
 export type PillTone = "ok" | "bad" | "muted";
 
@@ -185,6 +185,7 @@ export function IsoStory<N extends string, E extends string>({
   order,
   edges,
   scenes,
+  illustration,
 }: {
   /** text colour class; every accent reads it via currentColor */
   tone: string;
@@ -195,20 +196,24 @@ export function IsoStory<N extends string, E extends string>({
   order: N[];
   edges: Record<E, { d: string; stop?: [number, number] }>;
   scenes: IsoScene<N, E>[];
+  /** Story-specific illustration, not a shared topology decoration. */
+  illustration?: (step: number, still: boolean) => ReactNode;
 }) {
   const uid = useId().replace(/:/g, "");
   const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [paused, setPaused] = useState(false);
   const still = useReducedMotion();
+  const playing = inView && !paused && !still;
   const ref = useRef<HTMLElement>(null);
 
   // play only while on screen, and never for reduced motion
   useEffect(() => {
-    if (still || !ref.current) return;
-    const io = new IntersectionObserver(([e]) => setPlaying(e.isIntersecting), { threshold: 0.35 });
+    if (!ref.current) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.35 });
     io.observe(ref.current);
     return () => io.disconnect();
-  }, [still]);
+  }, []);
 
   useEffect(() => {
     if (!playing) return;
@@ -219,8 +224,9 @@ export function IsoStory<N extends string, E extends string>({
   const scene = scenes[step];
 
   return (
-    <figure ref={ref} className={`not-prose my-6 ${tone}`}>
+    <figure ref={ref} aria-label={label} className={`not-prose my-6 ${tone}`}>
       <svg viewBox={`0 0 600 ${h}`} role="img" aria-label={label} className="block w-full">
+        {illustration?.(step, !playing)}
         {/* edges first, so platforms sit on top of their ends */}
         {(Object.keys(edges) as E[]).map((id) => {
           const state = scene.edges[id] ?? "idle";
@@ -234,7 +240,7 @@ export function IsoStory<N extends string, E extends string>({
                 strokeWidth={1.4}
                 className={`${edgeClass[state]} transition-[stroke] duration-500`}
               />
-              {(state === "ok" || state === "bad" || state === "taint") && !still && (
+              {(state === "ok" || state === "bad" || state === "taint") && playing && (
                 <circle r={2.8} className={state === "ok" ? "fill-current" : "fill-rose-500"}>
                   <animateMotion
                     dur={state === "bad" ? "1.6s" : "1.8s"}
@@ -273,7 +279,7 @@ export function IsoStory<N extends string, E extends string>({
                 tint={tint === "ok" || tint === "bad" ? tint : "idle"}
                 dashed={scene.dashed?.includes(id)}
               />
-              <n.Obj p={p} tint={tint === "dim" ? "idle" : tint} step={step} />
+              <n.Obj p={p} tint={tint === "dim" ? "idle" : tint} step={step} still={!playing} />
               <text x={n.x} y={labelY} textAnchor="middle" className="fill-foreground/80 text-[10.5px]">
                 {n.title}
               </text>
@@ -293,7 +299,7 @@ export function IsoStory<N extends string, E extends string>({
         })}
       </svg>
 
-      <p aria-live="polite" className="mt-1 min-h-[2.6em] text-[12px] leading-relaxed text-muted-foreground/80">
+      <p aria-live={playing ? "off" : "polite"} className="mt-1 min-h-[2.6em] text-[12px] leading-relaxed text-muted-foreground/80">
         {scene.caption}
       </p>
 
@@ -302,9 +308,9 @@ export function IsoStory<N extends string, E extends string>({
           <button
             key={sc.label}
             type="button"
-            onClick={() => setStep(i)}
+            onClick={() => { setStep(i); setPaused(true); }}
             aria-pressed={i === step}
-            className="group cursor-pointer text-left"
+            className="group cursor-pointer text-left rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
           >
             <span className="block h-[3px] overflow-hidden rounded-full bg-border">
               <span
@@ -312,7 +318,7 @@ export function IsoStory<N extends string, E extends string>({
                 className="block h-full rounded-full bg-current"
                 style={{
                   width: i < step || (i === step && !playing) ? "100%" : i === step ? undefined : "0%",
-                  animation: i === step && playing ? `galaxy-fill ${STEP_MS}ms linear forwards` : undefined,
+                  animation: i === step && playing ? `diagram-progress ${STEP_MS}ms linear forwards` : undefined,
                 }}
               />
             </span>
@@ -325,6 +331,12 @@ export function IsoStory<N extends string, E extends string>({
             </span>
           </button>
         ))}
+      </div>
+      <div className="mt-3 flex items-center justify-between gap-4 text-[10.5px] text-muted-foreground/60">
+        <span>Logical architecture / select a scenario to explore</span>
+        <button type="button" disabled={still} onClick={() => setPaused(p => !p)} aria-label={paused ? "Play walkthrough" : "Pause walkthrough"} className="shrink-0 cursor-pointer hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 disabled:cursor-default">
+          {still ? "Reduced motion" : paused ? "Play" : "Pause"}
+        </button>
       </div>
     </figure>
   );

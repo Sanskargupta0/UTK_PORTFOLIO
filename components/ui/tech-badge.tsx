@@ -39,11 +39,6 @@ const TAG_COLORS: Record<string, string> = {
   puppeteer: "text-amber-700 bg-amber-100/70 dark:text-amber-300 dark:bg-amber-500/10",
   npmpackage: "text-red-700 bg-red-100/70 dark:text-red-300 dark:bg-red-500/10",
   python: "text-yellow-700 bg-yellow-100/70 dark:text-yellow-300 dark:bg-yellow-500/10",
-  inducedai: "text-stone-700 bg-stone-200/70 dark:text-stone-300 dark:bg-stone-500/15",
-  unolo: "text-fuchsia-700 bg-fuchsia-100/70 dark:text-fuchsia-300 dark:bg-fuchsia-500/10",
-  humanbehavior: "text-lime-700 bg-lime-100/70 dark:text-lime-300 dark:bg-lime-500/10",
-  keychain: "text-amber-700 bg-amber-100/70 dark:text-amber-300 dark:bg-amber-500/10",
-  amogh: "text-stone-700 bg-stone-200/70 dark:text-stone-300 dark:bg-stone-500/15",
   wip: "text-orange-700 bg-orange-100/70 dark:text-orange-300 dark:bg-orange-500/10",
 };
 
