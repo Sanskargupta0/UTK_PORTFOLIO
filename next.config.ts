@@ -10,18 +10,6 @@ const lastUpdated = new Date().toISOString();
 const nextConfig: NextConfig = {
   env: { NEXT_PUBLIC_LAST_UPDATED: lastUpdated },
   transpilePackages: ["next-mdx-remote"],
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lokendrakushwah12.github.io",
-      },
-      {
-        protocol: "https",
-        hostname: "utfs.io",
-      },
-    ],
-  },
   async rewrites() {
     return [
       {

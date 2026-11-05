@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: siteConfig.name,
   description: siteConfig.description,
-  // favicon.ico, icon.png and apple-icon.png come from the app/ file conventions (hashed URLs, so browsers refresh them)
+  // Photo icons use Next's file conventions and cache-busting URLs.
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
@@ -21,10 +21,11 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     images: [
       {
-        url: "/social.svg",
+        url: "/social.jpg",
         width: 1200,
         height: 630,
-        alt: "Utkarsh Saxena, Software Engineer",
+        alt: "Utkarsh Saxena — Product Manager & Software Engineer, with his portrait",
+        type: "image/jpeg",
       },
     ],
   },
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 
     title: siteConfig.name,
     description: siteConfig.description,
-    images: ["/social.svg"],
+    images: ["/social.jpg"],
   },
 };
 
