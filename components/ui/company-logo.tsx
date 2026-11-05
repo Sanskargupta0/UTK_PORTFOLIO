@@ -1,0 +1,2 @@
+import {getCompany} from '@/config/companies';import {cn} from '@/lib/utils';
+export function CompanyLogo({name,inline=false,className}:{name:string;inline?:boolean;className?:string}){const company=getCompany(name);if(!company)return null;return <img src={company.logo} alt={company.name+' logo'} width={inline?14:48} height={inline?14:48} style={{margin:0}} className={cn('object-contain shrink-0 border rounded-lg',company.logoClass,inline?'size-3.5 rounded-[2px] border-0 p-[1px]':'size-11 sm:size-12',className)}/>;}

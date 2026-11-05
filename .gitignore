@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Reference repositories and Next.js output
+/inspiration/
+/.next/
+/out/
+*.tsbuildinfo
+.env*
+!.env.example
+/.npm-cache/
+
+# Vite output
+/dist/
