@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#14532d"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="1020" cy="120" r="180" fill="#22c55e" opacity="0.12"/>
+  <circle cx="160" cy="540" r="220" fill="#22c55e" opacity="0.1"/>
+  <text x="80" y="290" font-family="Arial, Helvetica, sans-serif" font-size="140" font-weight="700" fill="#ffffff">Vyapa AI</text>
+  <text x="84" y="370" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#86efac">Your AI Employee for Business</text>
+  <text x="84" y="440" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#cbd5e1">AI Business OS for Indian SMEs, starting on WhatsApp</text>
+</svg>

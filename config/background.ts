@@ -58,6 +58,27 @@ export const codingProfiles = [
 ];
 export const projectDetails = [
   {
+    "id": "vyapa-ai",
+    "title": "Vyapa AI",
+    "description": "An AI Business Operating System for Indian SMEs that starts with WhatsApp and grows into the single interface for accounting, operations, CRM, inventory, compliance and business intelligence.",
+    "tags": [
+      "AI",
+      "WhatsApp",
+      "SaaS"
+    ],
+    "imageUrl": "/projects/vyapa-ai.svg",
+    "year": "2026",
+    "details": [
+      "Problem: millions of Indian SMEs run on WhatsApp, notebooks and Excel, leaving data fragmented and reporting manual.",
+      "Solution: an AI business secretary that takes voice notes, photos, PDFs and chat messages, extracts structured data, and automates bookkeeping, reminders, invoicing and analytics.",
+      "Phase 1: WhatsApp assistant and ledger. Phase 2: inventory, GST and supplier management.",
+      "Phase 3: predictive insights and AI memory. Phase 4: AI CFO, AI COO and business copilot.",
+      "Go-to-market: start with one vertical (hardware distributors or building material suppliers), pilot with 10 customers, iterate weekly, then expand after product-market fit.",
+      "Long-term: mobile, web, banking, GST, ONDC, payroll and ERP integrations."
+    ],
+    "githubUrl": null
+  },
+  {
     "id": "linkedin-go-pkg",
     "title": "LinkedIn-Go Pkg",
     "description": "A production-ready Golang SDK for the LinkedIn API with optimized OAuth2 and automated posting.",

@@ -48,6 +48,20 @@ const userData:UserData = {
   ],
   "projects": [
     {
+      "title": "Vyapa AI",
+      "description": "Main project: an AI Business Operating System for Indian SMEs that starts on WhatsApp. An AI business secretary that accepts voice notes, photos, PDFs and chats, extracts structured business data, and automates bookkeeping, reminders, invoicing and analytics. Roadmap: inventory, GST and supplier management, predictive insights, then an AI CFO/COO with ERP, ONDC and banking integrations.",
+      "tags": [
+        "AI",
+        "WhatsApp",
+        "SaaS"
+      ],
+      "Livelink": "/projects/vyapa-ai",
+      "gitHubLink": null,
+      "imageSrc": "/projects/vyapa-ai.svg",
+      "date": "2026",
+      "working": true
+    },
+    {
       "title": "LinkedIn-Go Pkg",
       "description": "A production-ready Golang SDK for the LinkedIn API with optimized OAuth2 and automated posting. Improved authentication speed by 30% with optimized OAuth2 handling. Reduced authentication failures from 50% to 20% by optimizing token exchange. Automated LinkedIn posting to reduce manual effort by 80%.",
       "tags": [
