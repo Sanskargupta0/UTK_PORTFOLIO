@@ -1,22 +1,57 @@
 # Utkarsh Saxena Portfolio
 
-The root app now uses inspiration/lokendra.tech. Its Next.js layout, fonts, dither background, expandable experience rows, project/craft tabs, sound toggle and themes are retained. Reference folders are Git-ignored. The personalized baseline was committed as 73010c2 before the work-page update. No deployment has been made.
+[utkarshsaxena.dev](https://utkarshsaxena.dev) — Utkarsh's portfolio covering Golang development, cloud infrastructure, distributed systems and product engineering.
 
-Run: npm install, then npm run dev. Build: npm run build. Production: npm start. Type check: npm run typecheck. Use npm.cmd in PowerShell if npm.ps1 is blocked.
+Built with Next.js App Router, React, TypeScript, Tailwind CSS and Motion. Includes interactive architecture walkthroughs, work history, projects, a downloadable resume, photo-based social previews and a traced handwritten signature.
 
-Personal content is in config/userData.ts, config/background.ts and content/work.mdx. The supplied resume is stored at public/Utkarsh-Saxena-Resume.pdf and connected to download/open buttons. The portrait is public/profile.png and the signature is a vector component. Redundant root image/PDF/signature scans were removed; source notes are retained in docs/profile-source.md. Email, phone, GitHub and LinkedIn links use Utkarsh's supplied details.
+## Local development
 
-Review at http://localhost:3000 after starting the app. The supplied profile photo, company logos and project images are connected. LinkedIn SDK, Typing Multiplayer Game and Electric Bill Optimizer have verified repository links. HTML Optimizer uses artwork from the older portfolio; its exact repository is still unconfirmed. The Crafts tab retains the original template UI demos.
+Use Node.js 24.x and npm:
 
-Vercel deployment settings are versioned in vercel.json, with Node 24.x pinned in package.json. The public origin is detected automatically from Vercel; optionally set NEXT_PUBLIC_SITE_URL to a preferred custom domain. See docs/vercel-deployment.md for the import steps. Analytics are optional and disabled without environment values. Contact uses mailto and telephone links; no backend credentials are required. Original-owner blogs, galleries and achievements have been removed.
+```sh
+npm ci
+npm run dev
+```
 
+Open http://localhost:3000. In PowerShell, use `npm.cmd` if `npm.ps1` is blocked.
 
-Asset provenance is recorded in docs/asset-sources.md. Sound behavior matches the template: enable sounds with the speaker button; company links and controls then play the existing hover and tap sounds.
+```sh
+npm run build          # Production build and type checking
+npm start              # Serve the production build
+npm run test:deployment # Domain-resolution checks
+npm run test:e2e        # Browser checks against a running app
+```
 
-The work page reuses the reference's isometric SVG animation engine for GPU allocation, cloud workers, container recovery and event-driven services. Select a scenario to explore it; Play resumes automatic scenario changes. Reduced-motion preferences disable automatic changes and moving particles. The diagrams are simplified logical walkthroughs, not production topology or incident reports.
+Install the browser once with `npx playwright install chromium`. Set `PLAYWRIGHT_BASE_URL` when testing a server on a different port.
 
-The Piovation section uses public/work/piovation-contributors.png with a neutral contribution heading and no demo wording. Replacement with the latest user-supplied chat screenshot is pending access to its local file. The live public GitHub calendar remains separate.
+## Content and assets
 
-A separate public-data graphic can be regenerated from content/github-evidence.json with npm run generate:github, or refreshed from the public APIs with npm run generate:github -- --refresh. Both SVG and PNG files are written to public/work. Run npm run test:e2e against a running app for the work-page browser checks (install Chromium with npx playwright install chromium first).
+- `config/userData.ts`: personal details, roles, contacts and project cards.
+- `config/background.ts`: skills, education/coding profiles and project details.
+- `content/work.mdx`: detailed work narrative and architecture walkthroughs.
+- `public/profile.png`, `public/Utkarsh-Saxena-Resume.pdf`: portrait and connected resume.
+- `components/ui/signature.tsx`: vector signature.
+- `scripts/generate-brand-assets.mjs`: regenerates icons and the social preview.
+- `scripts/generate-github-evidence.mjs`: regenerates the separate public GitHub activity graphic; add `--refresh` to fetch current public data.
 
-Browser icons, Apple/PWA icons and the JPEG social preview all use Utkarsh's supplied portrait. Regenerate them with node scripts/generate-brand-assets.mjs. Shared-image URLs resolve against the configured or automatically detected production origin. See docs/final-audit.md for the pre-commit review.
+Architecture diagrams are simplified logical explanations. Asset sources and content review notes are recorded in [docs/asset-sources.md](docs/asset-sources.md) and [docs/final-audit.md](docs/final-audit.md).
+
+## Vercel deployment and domain
+
+Import the repository into Vercel with the root directory `./`. `vercel.json` defines the Next.js preset, `npm ci` installation and `npm run build`. Keep the output directory at its default.
+
+Add `utkarshsaxena.dev` to the project's Domains settings. Production builds use `https://utkarshsaxena.dev` for social/share metadata. `NEXT_PUBLIC_SITE_URL` can override that origin; local development defaults to localhost. No backend credentials are needed for the current contact links and resume download.
+
+Full instructions: [docs/vercel-deployment.md](docs/vercel-deployment.md).
+
+## Analytics and performance
+
+[Vercel Web Analytics](https://vercel.com/docs/analytics/quickstart) and [Speed Insights](https://vercel.com/docs/speed-insights/quickstart) are integrated once in `app/layout.tsx` through `@vercel/analytics/next` and `@vercel/speed-insights/next`. They cover all routes and require no application API keys.
+
+In the Vercel project dashboard, enable **Web Analytics** and **Speed Insights**, then deploy this change. Visit the production site to start collecting page views and performance measurements. Dashboard activation is separate from installing the SDKs; data collection cannot be verified from a local build.
+
+Additional PostHog, Umami, Clarity and Visitors integrations remain optional and require their own environment values from `.env.example`.
+
+## Template provenance
+
+The design and shared UI interactions were adapted from the supplied `inspiration/lokendra.tech` template. The reference directory is Git-ignored; the Crafts tab retains its UI component examples. Personal branding and work content use Utkarsh's details.

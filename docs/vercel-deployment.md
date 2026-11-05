@@ -9,15 +9,19 @@ The versioned vercel.json sets the framework and npm commands. The package lock 
 
 ## Shared previews and domains
 
-The metadata origin is chosen in this order: NEXT_PUBLIC_SITE_URL override, Vercel production domain (including its framework-prefixed variant), deployment URL, then localhost for local development. This keeps social image URLs public and stable across builds. The portrait preview is /social.jpg.
+Production builds use https://utkarshsaxena.dev for their metadata origin, including preview builds so shared images point to the public site. NEXT_PUBLIC_SITE_URL overrides this when explicitly set. During development, Vercel domain variables can be detected automatically, with localhost as the fallback. The portrait preview is /social.jpg.
 
-Vercel exposes the production domain automatically when system environment variables are enabled (Project Settings → Environment Variables). To choose a specific custom domain, add it in Vercel Domains and optionally set NEXT_PUBLIC_SITE_URL to its complete HTTPS origin, for example https://your-domain.example. Redeploy after changing the value. Leave this variable empty for automatic detection; do not copy a localhost value into the production environment.
+Add utkarshsaxena.dev in the Vercel project's Domains settings and follow Vercel's DNS instructions. NEXT_PUBLIC_SITE_URL can select a different complete HTTPS origin if needed. Redeploy after changing that value. Leave it empty to use the production default; do not copy a localhost value into the production environment.
 
 Sharing services may cache old cards. Refresh their preview after deployment if an earlier image persists. Protected preview deployments may not be accessible to social crawlers; verify the final public production URL.
 
-## Optional analytics
+## Vercel Analytics and Speed Insights
 
-Only configure the analytics variables listed in .env.example if you want those services. Without values, analytics are disabled. Email and phone buttons do not need a backend. The resume, profile, company/project images and signatures are already local assets; no external file hosting is required.
+The root layout includes Analytics from @vercel/analytics/next and SpeedInsights from @vercel/speed-insights/next on all routes. No API keys or application environment variables are required for these Vercel integrations.
+
+In the Vercel project dashboard, enable Web Analytics and Speed Insights, then deploy the updated application. The SDKs are integrated in code; dashboard activation and live collection have not been performed from this workspace. Visit the public site after deployment to generate measurements.
+
+PostHog, Umami, Clarity and Visitors are separate optional providers. Configure their environment variables only if wanted; without values those providers remain disabled. Email and phone buttons do not need a backend. The resume, portrait, company/project images and signature are already local assets.
 
 ## Local checks
 
@@ -25,6 +29,8 @@ Run npm ci, npm run test:deployment and npm run build. Run npm start and, in ano
 
 No deployment or Vercel project/account changes are performed by these configuration files.
 
-Validation completed locally: production build, 13 Chromium browser checks, and seven tests covering local/custom/Vercel production/deployment origin selection. The temporary test server was stopped afterward.
+Validation commands cover production builds, Chromium browser checks and local/custom/Vercel/production origin selection. Local builds do not prove live analytics collection.
 
 References: [Vercel configuration](https://vercel.com/docs/project-configuration), [Node versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions), [Vercel domain variables](https://vercel.com/docs/environment-variables/system-environment-variables).
+
+Integration guides: [Web Analytics](https://vercel.com/docs/analytics/quickstart), [Speed Insights](https://vercel.com/docs/speed-insights/quickstart).
