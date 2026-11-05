@@ -31,6 +31,7 @@ dist-ssr
 .env*
 !.env.example
 /.npm-cache/
+/.vercel/
 
 # Vite output
 /dist/

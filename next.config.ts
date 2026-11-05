@@ -1,15 +1,13 @@
 import type { NextConfig } from "next";
 
-// The site only changes when it is rebuilt, so the build commit's date IS the
-// "last updated" time. Resolving it here avoids a runtime GitHub API call:
-// Workers egress from Cloudflare IPs shared across customers, and GitHub's
-// unauthenticated limit is 60 requests/hour per IP, so that call fails far more
-// often than it succeeds.
+// Record the build time without requiring a GitHub API request at runtime.
 const lastUpdated = new Date().toISOString();
 
 const nextConfig: NextConfig = {
   env: { NEXT_PUBLIC_LAST_UPDATED: lastUpdated },
   transpilePackages: ["next-mdx-remote"],
+  // next dev otherwise creates agent instruction files in the project root.
+  agentRules: false,
   async rewrites() {
     return [
       {
