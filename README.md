@@ -8,7 +8,7 @@ Personal content is in config/userData.ts, config/background.ts and content/work
 
 Review at http://localhost:3000 after starting the app. The supplied profile photo, company logos and project images are connected. LinkedIn SDK, Typing Multiplayer Game and Electric Bill Optimizer have verified repository links. HTML Optimizer uses artwork from the older portfolio; its exact repository is still unconfirmed. The Crafts tab retains the original template UI demos.
 
-Before deployment, set NEXT_PUBLIC_SITE_URL to the final domain. Analytics are optional and disabled without environment values. Contact uses mailto and telephone links; no backend credentials are required. Original-owner blogs, galleries and achievements have been removed.
+Vercel deployment settings are versioned in vercel.json, with Node 24.x pinned in package.json. The public origin is detected automatically from Vercel; optionally set NEXT_PUBLIC_SITE_URL to a preferred custom domain. See docs/vercel-deployment.md for the import steps. Analytics are optional and disabled without environment values. Contact uses mailto and telephone links; no backend credentials are required. Original-owner blogs, galleries and achievements have been removed.
 
 
 Asset provenance is recorded in docs/asset-sources.md. Sound behavior matches the template: enable sounds with the speaker button; company links and controls then play the existing hover and tap sounds.
@@ -19,4 +19,4 @@ The Piovation section uses public/work/piovation-contributors.png with a neutral
 
 A separate public-data graphic can be regenerated from content/github-evidence.json with npm run generate:github, or refreshed from the public APIs with npm run generate:github -- --refresh. Both SVG and PNG files are written to public/work. Run npm run test:e2e against a running app for the work-page browser checks (install Chromium with npx playwright install chromium first).
 
-Browser icons, Apple/PWA icons and the JPEG social preview all use Utkarsh's supplied portrait. Regenerate them with node scripts/generate-brand-assets.mjs. Set NEXT_PUBLIC_SITE_URL to the production HTTPS origin before building for deployment so shared-image URLs resolve publicly. See docs/final-audit.md for the pre-commit review.
+Browser icons, Apple/PWA icons and the JPEG social preview all use Utkarsh's supplied portrait. Regenerate them with node scripts/generate-brand-assets.mjs. Shared-image URLs resolve against the configured or automatically detected production origin. See docs/final-audit.md for the pre-commit review.

@@ -13,7 +13,7 @@ Reviewed 5 November 2026. This audit accompanies the portfolio work commit; Verc
 
 - Tab favicon, PNG icon, Apple icon and 192/512px manifest icons use crops of the supplied portrait.
 - Open Graph and Twitter metadata use a 1200×630 JPEG preview with Utkarsh's portrait, name and role. The previous text-only SVG preview and initials icons were removed.
-- Production requirement: set NEXT_PUBLIC_SITE_URL to the final public HTTPS origin before building. The local fallback cannot provide publicly reachable share-image URLs. Sharing services may retain an older preview until they recrawl the URL.
+- Vercel configuration now detects the production origin automatically. NEXT_PUBLIC_SITE_URL can override it for a preferred domain. Sharing services may retain an older preview until they recrawl the URL.
 
 ## Validation
 
