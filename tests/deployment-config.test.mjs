@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { test } from 'node:test';
 
-const variables = ['NEXT_PUBLIC_SITE_URL', 'VERCEL_PROJECT_PRODUCTION_URL', 'NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL', 'VERCEL_URL', 'NEXT_PUBLIC_VERCEL_URL'];
+const variables = ['NODE_ENV', 'NEXT_PUBLIC_SITE_URL', 'VERCEL_PROJECT_PRODUCTION_URL', 'NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL', 'VERCEL_URL', 'NEXT_PUBLIC_VERCEL_URL'];
 const cases = [
   ['local fallback', {}, 'http://localhost:3000'],
   ['Vercel production domain', { VERCEL_PROJECT_PRODUCTION_URL: 'utkarsh.vercel.app' }, 'https://utkarsh.vercel.app'],
@@ -11,6 +11,8 @@ const cases = [
   ['deployment URL fallback', { VERCEL_URL: 'utkarsh-preview.vercel.app' }, 'https://utkarsh-preview.vercel.app'],
   ['custom origin override', { NEXT_PUBLIC_SITE_URL: ' https://portfolio.example/ ', VERCEL_PROJECT_PRODUCTION_URL: 'utkarsh.vercel.app' }, 'https://portfolio.example'],
   ['empty override uses Vercel', { NEXT_PUBLIC_SITE_URL: '', VERCEL_PROJECT_PRODUCTION_URL: 'utkarsh.vercel.app' }, 'https://utkarsh.vercel.app'],
+  ['production uses the public portfolio domain', { NODE_ENV: 'production', VERCEL_PROJECT_PRODUCTION_URL: 'utkarsh.vercel.app' }, 'https://utkarshsaxena.dev'],
+  ['production origin can be overridden explicitly', { NODE_ENV: 'production', NEXT_PUBLIC_SITE_URL: 'https://portfolio.example/' }, 'https://portfolio.example'],
 ];
 for (const [name, overrides, expected] of cases) {
   test(name, () => {

@@ -5,6 +5,8 @@ import { ibmPlexMono, inter, karstar } from "@/lib/fonts";
 import { SoundProvider } from "@/components/sound-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import "./globals.css";
 
@@ -91,6 +93,8 @@ export default function RootLayout({
             </SoundProvider>
           </ThemeProvider>
         </PostHogProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
